@@ -10,11 +10,11 @@
                     <a href="{{ url('/transaksi/tambah') }}" class="btn btn-sm btn-primary">Input Transaksi</a>
                 </div>
                 <div class="card-body">
-                    @if (session()->has('sukses'))
-                        <div class="alert alert-info">
-                            {{ session()->get('sukses') }}
-                        </div>
-                    @endif
+                @if (Session::has('success'))
+                            <div class="alert alert-success">
+                                {{ Session::get('success') }}
+                            </div>
+                        @endif
 
                     <div class="row">
                         <div class="col-md-3">
@@ -51,14 +51,14 @@
                                     <td class="text-center">{{ $t->keterangan }}</td>
                                     <td class="text-center">{{ $t->kategori->kategori }}</td>
                                     <td class="text-center">
-                                        @if($t->jenis == 'pemasukan')
+                                        @if($t->jenis == 'Pemasukan')
                                             {{ "Rp." . number_format($t->nominal) . ",-" }}
                                         @else
                                             -
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if($t->jenis == 'pengeluaran')
+                                        @if($t->jenis == 'Pengeluaran')
                                             {{ "Rp." . number_format($t->nominal) . ",-" }}
                                         @else
                                             -

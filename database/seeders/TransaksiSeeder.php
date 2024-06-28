@@ -19,7 +19,7 @@ class TransaksiSeeder extends Seeder
         for ($x = 1; $x <= 20; $x++) {
 
             $tgl_hari_ini = date('Y-m-d');
-            $jenis = $faker->randomElement(["pemasukan", "pengeluaran"]);
+            $jenis = $faker->randomElement(["Pemasukan", "Pengeluaran"]);
             $kategori = $faker->randomElement(["2","3","4","5"]);
             $nominal = $faker->randomElement([
                 "100000",

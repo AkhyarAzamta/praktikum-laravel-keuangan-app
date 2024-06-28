@@ -54,8 +54,8 @@
                         </div>
                     </form>
                     <hr>
-                    <a target="_blank" href="{{ url('/laporan/print?dari=' . $dari . '&sampai=' . $sampai . '&kategori=' . $kat) }}" class="btn btn-primary">Print</a>
-                    <a target="_blank" href="{{ url('/laporan/excel?dari=' . $dari . '&sampai=' . $sampai . '&kategori=' . $kat) }}" class="btn btn-primary">Export Excel</a>
+                    <a target="_blank" href="{{ url('/laporan/print?dari=' . $dari . '&sampai=' . $sampai . '&kategori=' . $kategori) }}" class="btn btn-primary">Print</a>
+                    <a target="_blank" href="{{ url('/laporan/excel?dari=' . $dari . '&sampai=' . $sampai . '&kategori=' . $kategori) }}" class="btn btn-primary">Export Excel</a>
 
                     <table class="table table-bordered mt-4">
                         <thead>
@@ -83,7 +83,7 @@
                                     <td class="text-center">{{ $t->keterangan }}</td>
                                     <td class="text-center">{{ $t->kategori->kategori }}</td>
                                     <td class="text-center">
-                                        @if($t->jenis == 'pemasukan')
+                                        @if($t->jenis == 'Pemasukan')
                                             {{ "Rp." . number_format($t->nominal) . ",-" }}
                                             @php $total_pemasukan += $t->nominal; @endphp
                                         @else
@@ -91,7 +91,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if($t->jenis == 'pengeluaran')
+                                        @if($t->jenis == 'Pengeluaran')
                                             {{ "Rp." . number_format($t->nominal) . ",-" }}
                                             @php $total_pengeluaran += $t->nominal; @endphp
                                         @else

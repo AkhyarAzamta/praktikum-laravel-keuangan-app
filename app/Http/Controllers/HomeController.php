@@ -111,7 +111,7 @@ class HomeController extends Controller
         'keterangan' => 'required|string'
     ]);
 
-    Transaksi::insert([
+    Transaksi::create([
         'tanggal' => $request->tanggal,
         'jenis' => $request->jenis,
         'kategori_id' => $request->kategori,
@@ -139,7 +139,7 @@ class HomeController extends Controller
         'keterangan' => 'required|string'
     ]);
 
-    $transaksi = Transaksi::find($id);
+    $transaksi = Transaksi::findOrFail($id);
 
     $transaksi->tanggal = $request->tanggal;
     $transaksi->jenis = $request->jenis;
@@ -160,4 +160,57 @@ class HomeController extends Controller
         return redirect('transaksi')->with('success', 'Transaksi Berhasil Dihapus');
     }
 
+    public function transaksi_cari(Request $request)
+    {
+        $cari = $request->cari;
+
+        $transaksi = Transaksi::where(function ($query) use ($cari) {
+            $query->where('jenis', 'like', "%". $cari . "%")
+            ->orWhere("tanggal", "like", "%". $cari . "%")
+            ->orWhere("keterangan", "like", "%". $cari . "%")
+            ->orWhere("nominal", "=", $cari);
+        })->orderBy('id', 'desc')->paginate(10);
+
+        return view('transaksi', ['transaksi' => $transaksi]);
+    }
+
+    public function laporan()
+    {
+        $kategori = Kategori::all();
+
+        return view('laporan', ['kategori'=> $kategori]);
+    }
+
+    public function laporan_hasil(Request $request)
+    {
+        $request->validate([
+            'dari' => 'required',
+            'sampai' => 'required'
+        ]);
+
+        $kategori = Kategori::all();
+
+        $dari = $request->dari;
+        $sampai = $request->sampai;
+        $id_kategori = $request->kategori;
+
+        if($id_kategori == "semua") {
+            $laporan = Transaksi::whereDate('tanggal', '>=', $dari)
+            ->whereDate('tanggal', '<=', $sampai)
+            ->orderBy('id', 'desc')->get();
+    } else {
+        $laporan = Transaksi::whereDate('kategori_id', $id_kategori)
+        ->whereDate('tanggal', '>=', $dari)
+        ->whereDate('tanggal', '<=', $dari)
+        ->orderBy('id','desc')->get();
+    }
+
+    return view('laporan_hasil', 
+    ['laporan' => $laporan,
+    'dari' => $dari,
+    'sampai' => $sampai, 
+    'kategori' => $kategori
+]);
+
+}
 }

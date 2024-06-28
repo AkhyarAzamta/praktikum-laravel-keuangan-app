@@ -28,11 +28,11 @@
                             <select class="form-control" name="jenis">
                                 <option value="">Pilih Jenis</option>
                                 <option <?php if ($transaksi->jenis == 'Pemasukan'){
-                                echo "selected-'selected'";
-                                } ?> value="pemasukan">Pemasukan</option>
+                                echo "selected='selected'";
+                                } ?> value="Pemasukan">Pemasukan</option>
 
                                 <option <?php if ($transaksi->jenis == 'Pengeluaran'){
-                                    echo "selected-'selected'";
+                                    echo "selected='selected'";
                                     } ?> value="Pengeluaran">Pengeluaran</option>
                             </select>
                             @if ($errors->has('jenis'))
@@ -48,7 +48,7 @@
                                 <option value="">Pilihan Kategori</option>
                                 @foreach($kategori as $k)
                                 <option <?php if ($transaksi->id == $k->id){
-                                    echo "selected-'selected'";
+                                    echo "selected='selected'";
                                     } ?> value="{{ $k->id }}">{{ $k->kategori }}</option>   
                                 @endforeach
                             </select>
