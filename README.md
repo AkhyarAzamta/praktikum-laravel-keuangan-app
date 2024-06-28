@@ -23,7 +23,13 @@ Install or Update Composer
   ```bash
   php artisan migrate --seed
   ```
+  ```bash
+  npm install && npm run dev
+  ```
   Run Project and Don't forget to give me star:)
+  ```bash
+  php artisan serve
+  ```
 
 
 
