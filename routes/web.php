@@ -27,6 +27,10 @@ Route::get('/transaksi/hapus/{id}', [HomeController::class, 'transaksi_hapus']);
 Route::get('/transaksi/cari',[HomeController::class,'transaksi_cari']);
 Route::get('/laporan', [HomeController::class, 'laporan']);
 Route::get('/laporan/hasil', [HomeController::class, 'laporan_hasil']);
+Route::get('/laporan/print', [HomeController::class, 'laporan_print']);
+Route::get('/laporan/excel', [HomeController::class, 'laporan_excel']);
+Route::get('/ganti_password', [HomeController::class, 'ganti_password']);
+Route::post('ganti_password/aksi', [HomeController::class,'ganti_password_aksi']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

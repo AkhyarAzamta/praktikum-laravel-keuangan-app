@@ -98,17 +98,5 @@
             @yield('content')
         </main>
     </div>
-
-<script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            let alertElement = document.querySelector('.alert-success');
-            if (alertElement) {
-                alertElement.style.display = 'block';
-                setTimeout(() => {
-                    alertElement.style.display = 'none';
-                }, 2000); // 2000 ms = 2 detik
-            }
-        });
-    </script>
     </body>
 </html>
